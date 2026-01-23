@@ -24,3 +24,13 @@ SELECT
   COUNT(minutes_reading) AS minutes_reading_present,
   COUNT(pages) AS pages_present
 FROM "raw";
+
+
+--Univariate Analysis
+--A.Distribution of Reading Time
+SELECT
+  MIN(minutes_reading) AS min_minutes,
+  MAX(minutes_reading) AS max_minutes,
+  AVG(minutes_reading) AS avg_minutes,
+  approx_percentile(minutes_reading, 0.5) AS median_minutes
+FROM "raw";
