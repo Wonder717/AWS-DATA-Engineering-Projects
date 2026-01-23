@@ -14,3 +14,13 @@ FROM "raw";
 SELECT *
 FROM "raw"
 LIMIT 10;
+
+
+--Data quality check: Check for null values in critical columns
+SELECT
+  COUNT(*) AS total_rows,
+  COUNT(age_category) AS age_category_present,
+  COUNT(gender) AS gender_present,
+  COUNT(minutes_reading) AS minutes_reading_present,
+  COUNT(pages) AS pages_present
+FROM "raw";
