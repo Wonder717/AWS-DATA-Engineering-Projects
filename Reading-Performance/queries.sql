@@ -34,3 +34,12 @@ SELECT
   AVG(minutes_reading) AS avg_minutes,
   approx_percentile(minutes_reading, 0.5) AS median_minutes
 FROM "raw";
+
+
+--B.Distribution of Pages Read
+SELECT
+  MIN(pages) AS min_pages,
+  MAX(pages) AS max_pages,
+  AVG(pages) AS avg_pages,
+  approx_percentile(pages, 0.75) AS p75_pages
+FROM "raw";
