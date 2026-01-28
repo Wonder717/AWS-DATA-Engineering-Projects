@@ -43,3 +43,24 @@ SELECT
   AVG(pages) AS avg_pages,
   approx_percentile(pages, 0.75) AS p75_pages
 FROM "raw";
+
+
+
+--Contextual Factors
+--Effects of location on Reading Habits
+SELECT
+  location,
+  AVG(minutes_reading) AS avg_minutes,
+  AVG(pages) AS avg_pages
+FROM "raw"
+GROUP BY location
+ORDER BY avg_minutes DESC;
+
+--Effects of weather and mood on Reading Habits
+SELECT
+  weather,
+  mood,
+  COUNT(*) AS sessions
+FROM "raw"
+GROUP BY weather, mood
+ORDER BY sessions DESC;
