@@ -1,0 +1,7 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Reading Performance Analytics/ Data Engineering Project Infrastructure Template
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: reading-data-pipeline
