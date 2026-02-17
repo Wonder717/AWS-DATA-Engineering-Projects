@@ -63,4 +63,27 @@ Parameters:
         - arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole
         - arn:aws:iam::aws:policy/AmazonS3FullAccess
 
+# GLUE DATABASE
+  ReadingGlueDatabase:
+    Type: AWS::Glue::Database
+    Properties:
+      CatalogId: !Ref AWS::AccountId
+      DatabaseInput:
+        Name: reading_db
+
+ 
+  
+ # GLUE CRAWLER
+  ReadingRawCrawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      Name: !Sub "${ProjectName}-raw-crawler"
+      Role: !GetAtt GlueServiceRole.Arn
+      DatabaseName: !Ref ReadingGlueDatabase
+      Targets:
+        S3Targets:
+          - Path: !Sub "s3://${DataLakeBucket}/raw/"
+      SchemaChangePolicy:
+        UpdateBehavior: UPDATE_IN_DATABASE
+        DeleteBehavior: LOG
         
